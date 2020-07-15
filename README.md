@@ -1,20 +1,20 @@
-# Google Cloud FunctionsでOAuth2のアクセストークンを取得するデモ
+# Google Cloud Functions で OAuth2 のアクセストークンを取得するデモ
 
 ## 概要
 
-Google Cloud PlatformのFunctionsでGmail APIのアクセストークンを取得するデモです。
+Google Cloud Platform の Functions で Gmail API のアクセストークンを取得するデモです。
 
-FunctionsはTypeScriptで実装されています。
+Functions は TypeScript で実装されています。
 
 ## 準備
 
 ### 新しいプロジェクトを作る
 
-GCP管理画面で新しいプロジェクトを作る。プロジェクトIDを控えておく。
+GCP 管理画面で新しいプロジェクトを作る。プロジェクト ID を控えておく。
 
 ### リージョンとプロジェクトを固定する
 
-gcloudコマンドでいちいち`--project`や`--region`を指定しなくてよいよう、プロジェクトとリージョンを設定しておく。
+gcloud コマンドでいちいち`--project`や`--region`を指定しなくてよいよう、プロジェクトとリージョンを設定しておく。
 
 ```bash
 # プロジェクト用の設定を作る
@@ -30,25 +30,25 @@ gcloud config set project $プロジェクト名
 gcloud config set functions/region asia-northeast1
 ```
 
-### OAuth同意画面を作る
+### OAuth 同意画面を作る
 
-1. 「APIとサービス」→「OAuth同意画面」で同意画面を作っておく
+1. 「API とサービス」→「OAuth 同意画面」で同意画面を作っておく
 
 ### 認証情報を作る
 
-1. 「APIとサービス」→「認証情報」を開く
+1. 「API とサービス」→「認証情報」を開く
 1. 「+認証情報を作成」ドロップダウンメニューで「OAuth クライアント ID」を開き以下の設定で埋める:
-    * 「アプリケーションの種類」:「ウェブ アプリケーション」
-    * 「名前」: 何でもいい。デフォルトの「ウェブ クライアント 1」のままでもOK
-    * 「承認済みのリダイレクト URI」: `https://${GCF_REGION}-${GCLOUD_PROJECT}.cloudfunctions.net/oauth2callback`
+   - 「アプリケーションの種類」:「ウェブ アプリケーション」
+   - 「名前」: 何でもいい。デフォルトの「ウェブ クライアント 1」のままでも OK
+   - 「承認済みのリダイレクト URI」: `https://${GCF_REGION}-${GCLOUD_PROJECT}.cloudfunctions.net/oauth2callback`
 1. 「作成」を押す
-1. クライアントIDとクライアントシークレットが入ったJSONをダウンロードし、`client_secret.json`というファイル名で保存する
+1. クライアント ID とクライアントシークレットが入った JSON をダウンロードし、`client_secret.json`というファイル名で保存する
 
-### Gmail APIをONにする
+### Gmail API を ON にする
 
-※このサンプルでは実際にはGmail APIを叩かないが、OAuthの認可画面でどのAPIを認可するかが出ていたほうが雰囲気が出るのでGmail APIをONにしておく。
+※このサンプルでは実際には Gmail API を叩かないが、OAuth の認可画面でどの API を認可するかが出ていたほうが雰囲気が出るので Gmail API を ON にしておく。
 
-1. 「APIとサービス」→「ダッシュボード」→「+APIとサービスを有効化」を開く
+1. 「API とサービス」→「ダッシュボード」→「+API とサービスを有効化」を開く
 1. 「Gmail」でサービスを検索し、「有効にする」を押す
 
 ## デプロイ
@@ -65,14 +65,14 @@ yarn deploy:oauth2init
 yarn deploy:oauth2callback
 ```
 
-## ユーザとしてOAuthを試す
+## ユーザとして OAuth を試す
 
 1. `https://asia-northeast1-${プロジェクト名}.cloudfunctions.net/oauth2init`にブラウザでアクセスする。
 1. 認可画面が出るので認可を済ませる
-1. すると、GCP Functionsにリダイレクトされ、そこにアクセストークンを含んだJSONが表示されれば成功。
+1. すると、GCP Functions にリダイレクトされ、そこにアクセストークンを含んだ JSON が表示されれば成功。
 
-実際の実装では、得られたアクセストークンなどはGoogle Cloud PlatformのDatastoreなどに保存するといいでしょう。
+実際の実装では、得られたアクセストークンなどは Google Cloud Platform の Datastore などに保存するといいでしょう。
 
 ## 今後試したいこと
 
-* リフレッシュトークンを取得して、アクセストークンの再取得を自動化してみたい。
+- リフレッシュトークンを取得して、アクセストークンの再取得を自動化してみたい。
