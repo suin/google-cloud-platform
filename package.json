@@ -1,0 +1,35 @@
+{
+  "name": "google-cloud-platform-playground",
+  "version": "0.0.0-development",
+  "private": true,
+  "description": "GCPの実験場",
+  "license": "MIT",
+  "author": "suin <suinyeze@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "deploy:helloWorld": "gcloud functions deploy helloWorld --runtime=nodejs10 --trigger-http",
+    "gcp-build": "tsc",
+    "prettier": "prettier --write **/*.{ts,html,json,md}",
+    "reset": "git clean -Xdf -e '!/.idea/**'",
+    "reset:dry": "git clean -Xdfn -e '!/.idea/**'"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "filepath": "*.ts",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.6.0",
+    "@types/express": "^4.17.7",
+    "prettier": "^2.0.5",
+    "sort-package-json": "^1.44.0",
+    "typescript": "^3.9.6"
+  },
+  "engines": {
+    "node": "^10.18.1"
+  }
+}
