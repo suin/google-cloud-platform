@@ -4,3 +4,4 @@
 *.map
 !/types/**/*.d.ts
 /reference
+/client_secret.json
