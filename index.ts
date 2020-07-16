@@ -26,14 +26,18 @@ export const oauth2init: HttpFunction = (req, res) => {
   const scope = ['https://www.googleapis.com/auth/gmail.readonly']
 
   // 認可画面のURLを取得
-  const authUrl = oauth2Client.generateAuthUrl({ access_type: 'online', scope })
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: 'offline', // リフレッシュトークンを取得するのに必要
+    prompt: 'consent', // リフレッシュトークンを取得するのに必要
+    scope,
+  })
 
   // 認可画面にリダイレクト
   res.redirect(authUrl)
 }
 
 /**
- * 認可コードからアクセストークンを取得して表示する
+ * 認可コードからアクセストークンとリフレッシュトークンを取得して表示する
  */
 export const oauth2callback: HttpFunction = async (req, res) => {
   // 認可コードを取得する
@@ -47,7 +51,7 @@ export const oauth2callback: HttpFunction = async (req, res) => {
       ),
     )
 
-    // アクセストークンを表示する
+    // アクセストークンとリフレッシュトークンを表示する
     res.header('content-type', 'application/json')
     res.send(JSON.stringify(token))
   } catch (err) {

@@ -1,8 +1,8 @@
-# Google Cloud Functions で OAuth2 のアクセストークンを取得するデモ
+# Google Cloud Functions で OAuth2 のアクセストークンとリフレッシュトークンを取得するデモ
 
 ## 概要
 
-Google Cloud Platform の Functions で Gmail API のアクセストークンを取得するデモです。
+Google Cloud Platform の Functions で Gmail API のアクセストークンとリフレッシュトークンを取得するデモです。
 
 Functions は TypeScript で実装されています。
 
@@ -69,10 +69,6 @@ yarn deploy:oauth2callback
 
 1. `https://asia-northeast1-${プロジェクト名}.cloudfunctions.net/oauth2init`にブラウザでアクセスする。
 1. 認可画面が出るので認可を済ませる
-1. すると、GCP Functions にリダイレクトされ、そこにアクセストークンを含んだ JSON が表示されれば成功。
+1. すると、GCP Functions にリダイレクトされ、そこにアクセストークンとリフレッシュトークンを含んだ JSON が表示されれば成功。
 
 実際の実装では、得られたアクセストークンなどは Google Cloud Platform の Datastore などに保存するといいでしょう。
-
-## 今後試したいこと
-
-- リフレッシュトークンを取得して、アクセストークンの再取得を自動化してみたい。
