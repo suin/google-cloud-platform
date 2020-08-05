@@ -11,3 +11,4 @@
 1. [Google Cloud Functions で OAuth2 のアクセストークンとリフレッシュトークンを取得するデモ](https://github.com/suin/google-cloud-platform-playground/tree/functions-oauth2-refresh-token)
 1. [Gmail でメール受信時に Functions を実行する](https://github.com/suin/google-cloud-platform-playground/tree/functions-gmail-push-notification)
 1. [Google Cloud Functions: console.log で「ロギング」にログを出す](https://github.com/suin/google-cloud-platform-playground/tree/functions-logging)
+1. [Google Cloud Functions: console.log で構造化されたログを「ロギング」に出す](https://github.com/suin/google-cloud-platform-playground/tree/functions-structured-logging)
