@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
     "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
-    "deploy:helloWorld": "gcloud functions deploy helloWorld --runtime=nodejs10 --trigger-http",
+    "deploy:logging": "gcloud functions deploy logging --runtime=nodejs12 --trigger-http",
     "gcp-build": "tsc",
     "prettier": "prettier --write **/*.{ts,html,json,md}",
     "reset": "git clean -Xdf -e '!/.idea/**'",
@@ -30,6 +30,6 @@
     "typescript": "^3.9.6"
   },
   "engines": {
-    "node": "^10.18.1"
+    "node": "^12.16.3"
   }
 }
