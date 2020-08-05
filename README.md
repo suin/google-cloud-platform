@@ -1,6 +1,6 @@
-# Google Cloud Functions: console.log で「ロギング」にログを出す
+# Google Cloud Functions: console.log で構造化されたログを「ロギング」に出す
 
-Google Cloud Functions で`console.log`を使い、GCP の「ロギング」にログを出すデモです。
+Google Cloud Functions で`console.log`を使い、構造化されたログを GCP の「ロギング」にログを出すデモです。
 
 ## 準備
 
@@ -31,7 +31,7 @@ gcloud config set functions/region asia-northeast1
 関数をデプロイする:
 
 ```bash
-yarn deploy:logging
+yarn deploy:structuredLogging
 ```
 
 ## 関数を呼び出してロギングを試す
@@ -42,24 +42,11 @@ GCP のコンソールで、デプロイした関数のログビューアを表�
 
 ```bash
 project=$(gcloud config get-value project)
-
-# console.logを実行する
-curl -H 'X-Mode: log' https://asia-northeast1-${project}.cloudfunctions.net/logging
-
-# console.infoを実行する
-curl -H 'X-Mode: info' https://asia-northeast1-${project}.cloudfunctions.net/logging
-
-# console.warnを実行する
-curl -H 'X-Mode: warn' https://asia-northeast1-${project}.cloudfunctions.net/logging
-
-# console.errorを実行する
-curl -H 'X-Mode: error' https://asia-northeast1-${project}.cloudfunctions.net/logging
-
-# console.traceを実行する
-curl -H 'X-Mode: trace' https://asia-northeast1-${project}.cloudfunctions.net/logging
-
-# throw new Error
-curl -H 'X-Mode: exception' https://asia-northeast1-${project}.cloudfunctions.net/logging
+curl -H 'X-Demo: 1' https://asia-northeast1-${project}.cloudfunctions.net/structuredLogging
+curl -H 'X-Demo: 2' https://asia-northeast1-${project}.cloudfunctions.net/structuredLogging
+curl -H 'X-Demo: 3' https://asia-northeast1-${project}.cloudfunctions.net/structuredLogging
+curl -H 'X-Demo: 4' https://asia-northeast1-${project}.cloudfunctions.net/structuredLogging
+curl -H 'X-Demo: 5' https://asia-northeast1-${project}.cloudfunctions.net/structuredLogging
 ```
 
 ログビューアにログが出るまで「現在の位置に移動」を何度か押す。ログが出るまで数十秒のタイムラグがある。

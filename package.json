@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
     "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
-    "deploy:logging": "gcloud functions deploy logging --runtime=nodejs12 --trigger-http",
+    "deploy:structuredLogging": "gcloud functions deploy structuredLogging --runtime=nodejs12 --trigger-http",
     "gcp-build": "tsc",
     "prettier": "prettier --write **/*.{ts,html,json,md}",
     "reset": "git clean -Xdf -e '!/.idea/**'",

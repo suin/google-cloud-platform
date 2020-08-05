@@ -1,32 +1,43 @@
 import { HttpFunction } from '@google-cloud/functions-framework/build/src/functions'
 
-export const logging: HttpFunction = (req, res) => {
-  const mode = req.header('x-mode')
-  switch (mode) {
-    case 'error':
-      res.send(mode)
-      console.error(new Error('Error message'))
+export const structuredLogging: HttpFunction = (req, res) => {
+  const demo = req.header('x-demo')
+  const structure = {
+    number: 1,
+    boolean: true,
+    string: 'string',
+    array: [1, 2, 3],
+    set: new Set([1, 2, 3]), // SetはJSON.stringify()すると{}になるので対比するため入れてみる
+  }
+  switch (demo) {
+    case '1':
+      console.info('### console.log(structure) ###')
+      console.log(structure)
+      res.send(demo)
       break
-    case 'warn':
-      res.send(mode)
-      console.warn('Warning message')
+    case '2':
+      console.info(`### console.log('The structure is %o', structure) ###`)
+      console.log('The structure is %o', structure)
+      res.send(demo)
       break
-    case 'info':
-      res.send(mode)
-      console.info('Info message')
+    case '3':
+      console.info(`### JSON.stringify(structure) ###`)
+      console.log(JSON.stringify(structure))
+      res.send(demo)
       break
-    case 'log':
-      res.send(mode)
-      console.log('Log message')
+    case '4':
+      console.info(`### console.log('Logging message', structure) ###`)
+      console.log('Logging message', structure)
+      res.send(demo)
       break
-    case 'trace':
-      res.send(mode)
-      console.trace('Trace message')
+    case '5':
+      console.info(
+        `### console.log('Logging message', JSON.stringify(structure)) ###`,
+      )
+      console.log('Logging message', JSON.stringify(structure))
+      res.send(demo)
       break
-    case 'exception':
-      res.send(mode)
-      throw new Error('Exception message')
     default:
-      res.send(mode)
+      res.send(demo)
   }
 }
