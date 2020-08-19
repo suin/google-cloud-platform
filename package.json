@@ -1,0 +1,12 @@
+{
+  "name": "google-cloud-platform",
+  "version": "0.0.0",
+  "description": "Google Cloud Platformで実験するためのコード",
+  "repository": "git@github.com:suin/google-cloud-platform.git",
+  "author": "suin <suinyeze@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
+}
